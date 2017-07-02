@@ -109,22 +109,6 @@ function setup() {
 function draw() {
 
 
-	var hit = false;
-
-	for (var i = 0; i < buttons.length; i++) {
-
-		hit = collidePointRect(mouseX, mouseY,
-						  	   buttons[i].x, buttons[i].y,
-						   	   buttons[i].w, buttons[i].h);
-
-		if (mouseIsPressed && hit) {
-
-			buttons[i].playSound();
-
-		}
-
-	}
-
 	for (var i = 0; i < buttons.length; i++) {
 
 		buttons[i].show();
@@ -151,5 +135,25 @@ function draw() {
 		}
 
 	stopButton.show();
+
+}
+
+function mousePressed() {
+
+	var hit = false;
+
+	for (var i = 0; i < buttons.length; i++) {
+
+		hit = collidePointRect(mouseX, mouseY,
+						  	   buttons[i].x, buttons[i].y,
+						   	   buttons[i].w, buttons[i].h);
+
+		if (hit) {
+
+			buttons[i].playSound();
+
+		}
+
+	}
 
 }
