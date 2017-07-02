@@ -92,16 +92,6 @@ function draw() {
 
 		if (mouseIsPressed && hit) {
 
-			for (var j = 0; j < buttons.length; j++) {
-
-				if (buttons[j].buttonSound.isPlaying()) {
-
-					buttons[j].buttonSound.stop();
-
-				}
-
-			}
-
 			buttons[i].playSound();
 
 		}
