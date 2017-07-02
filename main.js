@@ -35,6 +35,31 @@ function Button(buttonName, buttonSound, x, y, w, h) {
 
 }
 
+function StopButton() {
+
+	this.x = width - 120;
+	this.y = height - 50;
+
+	this.w = 105;
+	this.h = 30;
+
+	this.show = function() {
+
+		fill(0, 255, 209);
+
+		rectMode(CORNER);
+		rect(this.x, this.y, this.w, this.h);
+		
+		fill(0);
+
+		textAlign(CORNER);
+		textSize(12);
+		text("Stop Sounds", this.x + 15, this.y + 20);
+
+	}
+
+}
+
 function preload() {
 
 	img = loadImage("Images/background.jpg");
@@ -55,6 +80,8 @@ function setup() {
 
 	imageMode(CENTER);
 	image(img, width / 2, height / 2, width, height);
+
+	stopButton = new StopButton();
 
 	buttons.push(new Button("SAN TI AGO", sounds[0],
 							10, 10, 100, 30));
@@ -103,5 +130,26 @@ function draw() {
 		buttons[i].show();
 
 	}
+
+	hit = collidePointRect(mouseX, mouseY,
+						   stopButton.x, stopButton.y,
+						   stopButton.w, stopButton.h);
+
+		if (mouseIsPressed && hit) {
+
+			for (var j = 0; j < buttons.length; j++) {
+
+				if (buttons[j].buttonSound.isPlaying()) {
+
+					buttons[j].buttonSound.stop();
+
+				}
+
+			}
+
+
+		}
+
+	stopButton.show();
 
 }
